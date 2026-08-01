@@ -2,7 +2,7 @@
 
 Live: https://www.surajelectricals.com
 
-I designed this site for Suraj Electricals, an electrical panel manufacturer based in Gurugram. The original was an old Bootstrap template — I rebuilt it from scratch with a custom design, animations, and no frameworks.
+I designed this site for Suraj Electricals, an electrical panel manufacturer based in Gurugram. I built it from scratch with a custom design, animations, and no frameworks.
 
 ## What I built
 
