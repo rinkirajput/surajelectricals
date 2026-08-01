@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Suraj Electricals projects — Power Control Centres, MCCs, Capacitor and AMF panels delivered across automotive, export, healthcare, steel, paper, sugar and textile industries." />
+<meta name="author" content="Suraj Electricals" />
+<title>Projects | Suraj Electricals</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="css/modern.css" rel="stylesheet" />
+
+<style>
+  .projects-page{
+    --c-ink:#12141c;
+    --c-copper:var(--copper, #b8703f);
+    --c-copper-soft:rgba(184,112,63,.14);
+    --c-paper:#ffffff;
+    --c-bg:#f7f6f3;
+    --c-line:#e6e3dc;
+    --c-text:#2b2c31;
+    --c-muted:#6b6f76;
+  }
+
+  /* ---- Page hero (shared pattern) ---- */
+  .page-hero{position:relative; overflow:hidden; background:var(--c-ink); padding:150px 0 96px; color:#fff;}
+  .page-hero .wrap{position:relative; z-index:2;}
+  .page-hero-grid{
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+  }
+  .page-hero svg.trace-line{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .page-hero svg.trace-line path{fill:none; stroke:var(--c-copper); stroke-width:1.4; opacity:.55; stroke-dasharray:8 7; animation:dashFlow 5s linear infinite;}
+  .page-hero svg.trace-line circle{fill:var(--c-copper); animation:nodePulse 2.6s ease-in-out infinite;}
+  @keyframes dashFlow{to{stroke-dashoffset:-150;}}
+  @keyframes nodePulse{0%,100%{opacity:.4; r:3;} 50%{opacity:1; r:5;}}
+
+  .crumb{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.55); display:flex; align-items:center; gap:8px; margin-bottom:22px; opacity:0; animation:fadeUp .7s ease forwards;}
+  .crumb a{color:rgba(255,255,255,.75); text-decoration:none;}
+  .crumb a:hover{color:var(--c-copper);}
+  .crumb span.sep{color:rgba(255,255,255,.3);}
+  .crumb span.here{color:var(--c-copper);}
+
+  .page-hero h1{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(34px, 5vw, 56px); line-height:1.08; margin:0 0 18px; max-width:680px; opacity:0; animation:fadeUp .8s ease .12s forwards;}
+  .page-hero h1 em{font-style:normal; color:var(--c-copper);}
+  .page-hero .lead{font-size:17px; line-height:1.65; color:rgba(255,255,255,.72); max-width:560px; margin:0 0 30px; opacity:0; animation:fadeUp .8s ease .24s forwards;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+
+  .hero-tally{display:flex; gap:28px; flex-wrap:wrap; opacity:0; animation:fadeUp .8s ease .36s forwards;}
+  .hero-tally div{display:flex; flex-direction:column;}
+  .hero-tally .n{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:26px; color:var(--c-copper);}
+  .hero-tally .l{font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-top:3px;}
+
+  /* ---- Accordion ---- */
+  .projects-list{background:var(--c-bg); padding:80px 0 100px;}
+  .accordion{display:flex; flex-direction:column; gap:16px;}
+  .acc-item{
+    background:var(--c-paper); border:1px solid var(--c-line); border-radius:16px; overflow:hidden;
+    box-shadow:0 4px 16px -12px rgba(18,20,28,.15);
+    opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease, box-shadow .3s ease;
+  }
+  .acc-item.in-view{opacity:1; transform:translateY(0);}
+  .acc-item.open{box-shadow:0 20px 40px -22px rgba(18,20,28,.28);}
+  .acc-head{
+    display:flex; align-items:center; gap:18px; padding:18px 24px; cursor:pointer;
+    background:none; border:none; width:100%; text-align:left; font-family:inherit;
+  }
+  .acc-thumb{width:56px; height:56px; border-radius:10px; overflow:hidden; flex:none; background:var(--c-bg);}
+  .acc-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .acc-title{flex:1; min-width:0;}
+  .acc-title h3{font-family:'Space Grotesk', sans-serif; font-size:18px; margin:0 0 3px; color:var(--c-text);}
+  .acc-title span{font-size:12.5px; color:var(--c-muted);}
+  .acc-count{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--c-copper);
+    background:var(--c-copper-soft); padding:5px 11px; border-radius:999px; flex:none;
+  }
+  .acc-chevron{width:32px; height:32px; border-radius:50%; border:1px solid var(--c-line); display:flex; align-items:center; justify-content:center; flex:none; transition:transform .35s ease, background .25s ease;}
+  .acc-chevron svg{width:14px; height:14px; stroke:var(--c-text);}
+  .acc-item.open .acc-chevron{transform:rotate(180deg); background:var(--c-copper-soft); border-color:transparent;}
+  .acc-item.open .acc-chevron svg{stroke:var(--c-copper);}
+
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.2,.7,.3,1);}
+  .acc-body-inner{padding:4px 24px 26px; display:grid; grid-template-columns:1fr 1fr; gap:12px 20px;}
+  .proj-row{
+    border-left:2px solid var(--c-copper); padding:8px 0 8px 14px;
+  }
+  .proj-row .p-name{font-weight:600; font-size:14.5px; color:var(--c-text); display:block;}
+  .proj-row .p-scope{font-size:13px; color:var(--c-muted); display:block; margin-top:2px;}
+
+  @media (max-width: 780px){
+    .page-hero{padding:130px 0 70px;}
+    .acc-body-inner{grid-template-columns:1fr;}
+    .acc-thumb{width:44px; height:44px;}
+    .acc-title h3{font-size:16px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
+    .crumb, .page-hero h1, .page-hero .lead, .hero-tally, .acc-item{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+</style>
+</head>
+<body class="projects-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" id="siteNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+      <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li class="active"><a href="projects.html">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a class="nav-cta" href="contact.html">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<header class="page-hero">
+  <div class="page-hero-grid"></div>
+  <svg class="trace-line" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M -20 380 H 300 V 260 H 620 V 140 H 900" />
+    <path d="M 1220 120 H 940 V 300 H 700" />
+    <circle cx="300" cy="380" r="4" />
+    <circle cx="620" cy="260" r="3.5" />
+    <circle cx="900" cy="140" r="4" />
+    <circle cx="700" cy="300" r="3.5" />
+  </svg>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span class="here">Projects</span></div>
+    <h1>Panels installed, <em>industries powered.</em></h1>
+    <p class="lead">From automotive to sugar, hospitals to textiles — a look at the LT/HT switchboards, PCCs, MCCs and distribution panels we've engineered and installed nationwide.</p>
+    <div class="hero-tally">
+      <div><span class="n">6</span><span class="l">Industries</span></div>
+      <div><span class="n">28+</span><span class="l">Projects Listed</span></div>
+      <div><span class="n">2017</span><span class="l">Since</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ACCORDION ============ -->
+<section class="projects-list">
+  <div class="wrap">
+    <div class="accordion" id="accordion">
+
+      <div class="acc-item open" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Project_AI.jpg" alt="Automotive Industry" /></span>
+          <span class="acc-title"><h3>Automotive Industry</h3><span>LT panels &amp; PCC systems for vehicle manufacturers</span></span>
+          <span class="acc-count">5 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">Ashok Leyland</span><span class="p-scope">Main LT Panel</span></div>
+            <div class="proj-row"><span class="p-name">Shriram Piston &amp; Rings Ltd.</span><span class="p-scope">PCC Panel</span></div>
+            <div class="proj-row"><span class="p-name">Talbros Automotive Ltd</span><span class="p-scope">Main LT Panel &amp; Synchronisation Panel</span></div>
+            <div class="proj-row"><span class="p-name">Tata Ryerson Ltd.</span><span class="p-scope">PCC, Capacitor, PDB and Bus Duct</span></div>
+            <div class="proj-row"><span class="p-name">Maruti Udyog Ltd.</span><span class="p-scope">PDB, PCC Panels</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Projects_EI.jpg" alt="Export Industry" /></span>
+          <span class="acc-title"><h3>Export Industry</h3><span>Panels for export-oriented manufacturing units</span></span>
+          <span class="acc-count">5 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">Angelique International Ltd.</span><span class="p-scope">Distribution Boxes</span></div>
+            <div class="proj-row"><span class="p-name">Tchard, South Africa</span><span class="p-scope">Electrical Panels / Junction Boxes</span></div>
+            <div class="proj-row"><span class="p-name">Reliable Yarn Industries</span><span class="p-scope">LT, MCC Panels</span></div>
+            <div class="proj-row"><span class="p-name">Dairy Plant</span><span class="p-scope">PCC, PDBs, Bus Duct</span></div>
+            <div class="proj-row"><span class="p-name">Foundry Plant</span><span class="p-scope">PCC, PDBs, Bus Duct</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Projects_H.jpg" alt="Hospitals" /></span>
+          <span class="acc-title"><h3>Hospitals</h3><span>Critical LT panels &amp; distribution boards for healthcare</span></span>
+          <span class="acc-count">4 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">Max Healthcare</span><span class="p-scope">Main LT Panel</span></div>
+            <div class="proj-row"><span class="p-name">SGM Hospital</span><span class="p-scope">MLDB / Capacitor Panel</span></div>
+            <div class="proj-row"><span class="p-name">Fortis Healthcare Ltd.</span><span class="p-scope">PCC, MCC and DBs</span></div>
+            <div class="proj-row"><span class="p-name">Jaipur Golden</span><span class="p-scope">Main LT Panel, Capacitor Panel</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Projects_SI.jpg" alt="Steel / Paper Industry" /></span>
+          <span class="acc-title"><h3>Steel / Paper Industry</h3><span>Heavy-duty MCCs &amp; PCCs for process plants</span></span>
+          <span class="acc-count">5 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">JSW Steel Ltd.</span><span class="p-scope">PMCC / MCC &amp; DGMCC</span></div>
+            <div class="proj-row"><span class="p-name">Visa Steel Ltd.</span><span class="p-scope">MCC, Distribution Board</span></div>
+            <div class="proj-row"><span class="p-name">Khanna Paper Mill</span><span class="p-scope">PCCs &amp; MCCs</span></div>
+            <div class="proj-row"><span class="p-name">Aarti Steels Ltd.</span><span class="p-scope">PCCs &amp; MCCs</span></div>
+            <div class="proj-row"><span class="p-name">ABC Paper Mill Ltd.</span><span class="p-scope">MCC Panel</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Projects_SugarI.jpg" alt="Sugar Industry" /></span>
+          <span class="acc-title"><h3>Sugar Industry</h3><span>Feeder, starter &amp; capacitor panels for sugar mills</span></span>
+          <span class="acc-count">4 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">Daurala Sugar Mills</span><span class="p-scope">PCC / MCC &amp; DB</span></div>
+            <div class="proj-row"><span class="p-name">Mawana Sugar Ltd.</span><span class="p-scope">Feeder / Starter / Capacitor Panel</span></div>
+            <div class="proj-row"><span class="p-name">Dalmia Sugar Ltd.</span><span class="p-scope">LT, PCC &amp; MCC Panels</span></div>
+            <div class="proj-row"><span class="p-name">Rana Sugars Ltd</span><span class="p-scope">LT, PCC &amp; MCC Panels</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item" data-acc>
+        <button class="acc-head" type="button">
+          <span class="acc-thumb"><img src="images/Projects_Textile.jpg" alt="Textile Industry" /></span>
+          <span class="acc-title"><h3>Textile Industry</h3><span>MCCs, bus ducts &amp; floor panels for textile units</span></span>
+          <span class="acc-count">5 Projects</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="proj-row"><span class="p-name">Orient Crafts Ltd.</span><span class="p-scope">MCC Panel / Bus Ducts</span></div>
+            <div class="proj-row"><span class="p-name">Century Denim Ltd.</span><span class="p-scope">PCC / MCC / Bus Duct</span></div>
+            <div class="proj-row"><span class="p-name">Orient Fashion — Gurugram</span><span class="p-scope">PCC / MCC / Floor Panel</span></div>
+            <div class="proj-row"><span class="p-name">Gontermann Peipers</span><span class="p-scope">PDBs</span></div>
+            <div class="proj-row"><span class="p-name">Shahi Exports</span><span class="p-scope">PCC / MCC / Bus Duct</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Need a custom panel solution?</h2>
+    <p>Tell us your load, site, and standards — we'll spec the panel to match.</p>
+    <a class="btn btn-primary" href="contact.html">Contact Our Team &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+          <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+        </a>
+        <p>Manufacturer of complete electrical panels, electrical panel projects, and all types of electrical work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-cta-col">
+        <h4>Get in Touch</h4>
+        <p>Have a panel spec, load, or site requirement to discuss?</p>
+        <a class="btn btn-ghost footer-cta-btn" href="contact.html">Contact Us <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
+      <span>Designed &amp; built in-house</span>
+    </div>
+  </div>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/modern.js"></script>
+<script>
+  // Accordion
+  (function(){
+    var items = document.querySelectorAll('[data-acc]');
+    function setHeight(item, open){
+      var body = item.querySelector('.acc-body');
+      var inner = item.querySelector('.acc-body-inner');
+      if(open){ body.style.maxHeight = inner.offsetHeight + 'px'; }
+      else{ body.style.maxHeight = '0px'; }
+    }
+    items.forEach(function(item){
+      var open = item.classList.contains('open');
+      setHeight(item, open);
+      item.querySelector('.acc-head').addEventListener('click', function(){
+        var willOpen = !item.classList.contains('open');
+        item.classList.toggle('open', willOpen);
+        setHeight(item, willOpen);
+      });
+    });
+    window.addEventListener('resize', function(){
+      items.forEach(function(item){
+        if(item.classList.contains('open')) setHeight(item, true);
+      });
+    });
+
+    // Reveal on scroll
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, {threshold:.12});
+      items.forEach(function(t, i){
+        t.style.transitionDelay = (i * 0.06) + 's';
+        io.observe(t);
+      });
+    } else {
+      items.forEach(function(t){ t.classList.add('in-view'); });
+    }
+  })();
+</script>
+</body>
+</html>

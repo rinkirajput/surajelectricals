@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Photo gallery — Motor Control Centres, wiring and distribution board work by Suraj Electricals." />
+<meta name="author" content="Suraj Electricals" />
+<title>Gallery | Suraj Electricals</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="css/modern.css" rel="stylesheet" />
+
+<style>
+  .gallery-page{
+    --c-ink:#12141c;
+    --c-copper:var(--copper, #b8703f);
+    --c-copper-soft:rgba(184,112,63,.14);
+    --c-paper:#ffffff;
+    --c-bg:#f7f6f3;
+    --c-line:#e6e3dc;
+    --c-text:#2b2c31;
+    --c-muted:#6b6f76;
+  }
+
+  /* ---- Page hero (shared pattern) ---- */
+  .page-hero{position:relative; overflow:hidden; background:var(--c-ink); padding:150px 0 96px; color:#fff;}
+  .page-hero .wrap{position:relative; z-index:2;}
+  .page-hero-grid{
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+  }
+  .page-hero svg.trace-line{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .page-hero svg.trace-line path{fill:none; stroke:var(--c-copper); stroke-width:1.4; opacity:.55; stroke-dasharray:8 7; animation:dashFlow 5s linear infinite;}
+  .page-hero svg.trace-line circle{fill:var(--c-copper); animation:nodePulse 2.6s ease-in-out infinite;}
+  @keyframes dashFlow{to{stroke-dashoffset:-150;}}
+  @keyframes nodePulse{0%,100%{opacity:.4; r:3;} 50%{opacity:1; r:5;}}
+
+  .crumb{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.55); display:flex; align-items:center; gap:8px; margin-bottom:22px; opacity:0; animation:fadeUp .7s ease forwards;}
+  .crumb a{color:rgba(255,255,255,.75); text-decoration:none;}
+  .crumb a:hover{color:var(--c-copper);}
+  .crumb span.sep{color:rgba(255,255,255,.3);}
+  .crumb span.here{color:var(--c-copper);}
+
+  .page-hero h1{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(34px, 5vw, 56px); line-height:1.08; margin:0 0 18px; max-width:640px; opacity:0; animation:fadeUp .8s ease .12s forwards;}
+  .page-hero h1 em{font-style:normal; color:var(--c-copper);}
+  .page-hero .lead{font-size:17px; line-height:1.65; color:rgba(255,255,255,.72); max-width:520px; margin:0; opacity:0; animation:fadeUp .8s ease .24s forwards;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---- Gallery grid ---- */
+  .gallery-sec{background:var(--c-bg); padding:80px 0 100px;}
+  .g-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .g-item{
+    position:relative; border-radius:14px; overflow:hidden; cursor:pointer;
+    aspect-ratio:4/3; box-shadow:0 16px 34px -22px rgba(18,20,28,.28);
+    opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease;
+  }
+  .g-item.in-view{opacity:1; transform:translateY(0);}
+  .g-item img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+  .g-item:hover img{transform:scale(1.08);}
+  .g-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 45%, rgba(18,20,28,.85) 100%);
+    display:flex; align-items:flex-end; padding:18px;
+    opacity:0; transition:opacity .3s ease;
+  }
+  .g-item:hover .g-overlay{opacity:1;}
+  .g-overlay h3{color:#fff; font-family:'Space Grotesk', sans-serif; font-size:15.5px; font-weight:600; margin:0;}
+  .g-zoom{
+    position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%;
+    background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(.7); transition:opacity .3s ease, transform .3s ease;
+  }
+  .g-item:hover .g-zoom{opacity:1; transform:scale(1);}
+  .g-zoom svg{width:15px; height:15px; stroke:var(--c-ink);}
+
+  /* ---- Lightbox ---- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(10,11,15,.94); z-index:999;
+    display:none; align-items:center; justify-content:center; padding:40px;
+    opacity:0; transition:opacity .3s ease;
+  }
+  .lightbox.show{display:flex; opacity:1;}
+  .lb-figure{max-width:min(92vw, 1100px); max-height:86vh; text-align:center;}
+  .lb-figure img{max-width:100%; max-height:76vh; border-radius:10px; box-shadow:0 30px 70px rgba(0,0,0,.5); display:block; margin:0 auto;
+    opacity:0; transform:scale(.96); transition:opacity .25s ease, transform .25s ease;}
+  .lightbox.show .lb-figure img{opacity:1; transform:scale(1);}
+  .lb-caption{color:rgba(255,255,255,.8); font-size:14px; margin-top:16px; font-family:'IBM Plex Sans', sans-serif;}
+  .lb-close, .lb-prev, .lb-next{
+    position:absolute; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
+    border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background .2s ease;
+  }
+  .lb-close:hover, .lb-prev:hover, .lb-next:hover{background:var(--c-copper); border-color:var(--c-copper);}
+  .lb-close svg, .lb-prev svg, .lb-next svg{width:18px; height:18px; stroke:#fff;}
+  .lb-close{top:24px; right:24px;}
+  .lb-prev{left:24px; top:50%; transform:translateY(-50%);}
+  .lb-next{right:24px; top:50%; transform:translateY(-50%);}
+
+  @media (max-width: 900px){
+    .page-hero{padding:130px 0 80px;}
+    .g-grid{grid-template-columns:1fr 1fr;}
+    .lb-prev, .lb-next{width:38px; height:38px;}
+  }
+  @media (max-width: 560px){
+    .g-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
+    .crumb, .page-hero h1, .page-hero .lead, .g-item{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+</style>
+</head>
+<body class="gallery-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" id="siteNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+      <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li class="active"><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a class="nav-cta" href="contact.html">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<header class="page-hero">
+  <div class="page-hero-grid"></div>
+  <svg class="trace-line" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M -20 380 H 300 V 260 H 620 V 140 H 900" />
+    <path d="M 1220 120 H 940 V 300 H 700" />
+    <circle cx="300" cy="380" r="4" />
+    <circle cx="620" cy="260" r="3.5" />
+    <circle cx="900" cy="140" r="4" />
+    <circle cx="700" cy="300" r="3.5" />
+  </svg>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span class="here">Gallery</span></div>
+    <h1>A closer look at <em>what we build.</em></h1>
+    <p class="lead">Motor Control Centres, wiring and distribution boards — straight from the shop floor.</p>
+  </div>
+</header>
+
+<!-- ============ GALLERY GRID ============ -->
+<section class="gallery-sec">
+  <div class="wrap">
+    <div class="g-grid" id="galleryGrid">
+
+      <div class="g-item" data-title="Motor Control Center - Open">
+        <img src="images/47pg_gallery-switch1.jpg" alt="Motor Control Center - Open" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Motor Control Center - Open</h3></div>
+      </div>
+
+      <div class="g-item" data-title="Motor Control Center - Inside">
+        <img src="images/48pg_gallery-switch2.jpg" alt="Motor Control Center - Inside" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Motor Control Center - Inside</h3></div>
+      </div>
+
+      <div class="g-item" data-title="Motor Control Center - Left">
+        <img src="images/49pg_gallery-switch3.jpg" alt="Motor Control Center - Left" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Motor Control Center - Left</h3></div>
+      </div>
+
+      <div class="g-item" data-title="Motor Control Center">
+        <img src="images/50pg_gallery-switch4.jpg" alt="Motor Control Center" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Motor Control Center</h3></div>
+      </div>
+
+      <div class="g-item" data-title="Wiring">
+        <img src="images/51pg_gallery-switch5.jpg" alt="Wiring" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Wiring</h3></div>
+      </div>
+
+      <div class="g-item" data-title="Distribution Board">
+        <img src="images/75pg_distribution-board.jpg" alt="Distribution Board" />
+        <span class="g-zoom"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div class="g-overlay"><h3>Distribution Board</h3></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Need a custom panel solution?</h2>
+    <p>Tell us your load, site, and standards — we'll spec the panel to match.</p>
+    <a class="btn btn-primary" href="contact.html">Contact Our Team &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+          <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+        </a>
+        <p>Manufacturer of complete electrical panels, electrical panel projects, and all types of electrical work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-cta-col">
+        <h4>Get in Touch</h4>
+        <p>Have a panel spec, load, or site requirement to discuss?</p>
+        <a class="btn btn-ghost footer-cta-btn" href="contact.html">Contact Us <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
+      <span>Designed &amp; built in-house</span>
+    </div>
+  </div>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="lb-figure">
+    <img id="lbImage" src="" alt="" />
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+  <button class="lb-next" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/modern.js"></script>
+<script>
+  (function(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.g-item'));
+    var lightbox = document.getElementById('lightbox');
+    var lbImage = document.getElementById('lbImage');
+    var lbCaption = document.getElementById('lbCaption');
+    var current = 0;
+
+    function open(i){
+      current = i;
+      var img = items[i].querySelector('img');
+      lbImage.src = img.src;
+      lbImage.alt = img.alt;
+      lbCaption.textContent = items[i].getAttribute('data-title');
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      lightbox.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    function nav(dir){
+      current = (current + dir + items.length) % items.length;
+      open(current);
+    }
+
+    items.forEach(function(item, i){
+      item.addEventListener('click', function(){ open(i); });
+    });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function(){ nav(-1); });
+    document.getElementById('lbNext').addEventListener('click', function(){ nav(1); });
+    lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+    document.addEventListener('keydown', function(e){
+      if(!lightbox.classList.contains('show')) return;
+      if(e.key === 'Escape') close();
+      if(e.key === 'ArrowLeft') nav(-1);
+      if(e.key === 'ArrowRight') nav(1);
+    });
+
+    // Reveal on scroll
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, {threshold:.15});
+      items.forEach(function(t, i){
+        t.style.transitionDelay = (i % 3 * 0.08) + 's';
+        io.observe(t);
+      });
+    } else {
+      items.forEach(function(t){ t.classList.add('in-view'); });
+    }
+  })();
+</script>
+</body>
+</html>

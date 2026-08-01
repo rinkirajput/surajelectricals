@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Meet the leadership of Suraj Electricals — founder Suraj Reswal and the directors behind the company's electrical panel manufacturing operations." />
+<meta name="author" content="Suraj Electricals" />
+<title>About Us — Management | Suraj Electricals</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="css/modern.css" rel="stylesheet" />
+
+<style>
+  /* ===== About page — scoped extension of the modern.css system ===== */
+  .about-page{
+    --c-ink:#12141c;
+    --c-copper:var(--copper, #b8703f);
+    --c-copper-soft:rgba(184,112,63,.14);
+    --c-paper:#ffffff;
+    --c-bg:#f7f6f3;
+    --c-line:#e6e3dc;
+    --c-text:#2b2c31;
+    --c-muted:#6b6f76;
+  }
+
+  /* ---- Page hero (shared pattern) ---- */
+  .page-hero{position:relative; overflow:hidden; background:var(--c-ink); padding:150px 0 96px; color:#fff;}
+  .page-hero .wrap{position:relative; z-index:2;}
+  .page-hero-grid{
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+  }
+  .page-hero svg.trace-line{position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+  .page-hero svg.trace-line path{fill:none; stroke:var(--c-copper); stroke-width:1.4; opacity:.55; stroke-dasharray:8 7; animation:dashFlow 5s linear infinite;}
+  .page-hero svg.trace-line circle{fill:var(--c-copper); animation:nodePulse 2.6s ease-in-out infinite;}
+  @keyframes dashFlow{to{stroke-dashoffset:-150;}}
+  @keyframes nodePulse{0%,100%{opacity:.4; r:3;} 50%{opacity:1; r:5;}}
+
+  .crumb{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.55); display:flex; align-items:center; gap:8px; margin-bottom:22px; opacity:0; animation:fadeUp .7s ease forwards;}
+  .crumb a{color:rgba(255,255,255,.75); text-decoration:none;}
+  .crumb a:hover{color:var(--c-copper);}
+  .crumb span.sep{color:rgba(255,255,255,.3);}
+  .crumb span.here{color:var(--c-copper);}
+
+  .page-hero h1{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(34px, 5vw, 56px); line-height:1.08; margin:0 0 18px; max-width:680px; opacity:0; animation:fadeUp .8s ease .12s forwards;}
+  .page-hero h1 em{font-style:normal; color:var(--c-copper);}
+  .page-hero .lead{font-size:17px; line-height:1.65; color:rgba(255,255,255,.72); max-width:560px; margin:0; opacity:0; animation:fadeUp .8s ease .24s forwards;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---- Sub-nav tabs ---- */
+  .subnav{background:var(--c-paper); border-bottom:1px solid var(--c-line); position:relative; z-index:4;}
+  .subnav .wrap{display:flex; gap:6px; padding:14px 0;}
+  .subnav a{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--c-muted); text-decoration:none; padding:9px 18px; border-radius:999px;
+    transition:color .2s ease, background .2s ease;
+  }
+  .subnav a:hover{color:var(--c-text);}
+  .subnav a.active{background:var(--c-copper-soft); color:var(--c-copper); font-weight:600;}
+
+  /* ---- Founder spotlight ---- */
+  .founder-section{background:var(--c-bg); padding:90px 0 50px;}
+  .founder-card{
+    position:relative; display:grid; grid-template-columns:.8fr 1.2fr; gap:44px; align-items:center;
+    background:var(--c-paper); border:1px solid var(--c-line); border-radius:20px; padding:20px;
+    box-shadow:0 24px 54px -28px rgba(18,20,28,.28);
+    opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;
+  }
+  .founder-card.in-view{opacity:1; transform:translateY(0);}
+  .founder-card .rivet{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--c-line);}
+  .founder-card .rivet.tl{top:16px; left:16px;} .founder-card .rivet.tr{top:16px; right:16px;}
+  .founder-card .rivet.bl{bottom:16px; left:16px;} .founder-card .rivet.br{bottom:16px; right:16px;}
+  .founder-photo{border-radius:14px; overflow:hidden; aspect-ratio:4/5;}
+  .founder-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .founder-copy{padding:16px 28px 16px 0;}
+  .founder-tag{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); display:inline-block; margin-bottom:10px;}
+  .founder-copy h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3vw,32px); margin:0 0 4px; color:var(--c-text);}
+  .founder-role{font-size:14px; color:var(--c-muted); margin:0 0 20px; font-weight:500;}
+  .founder-copy p{color:var(--c-muted); font-size:15px; line-height:1.75; margin:0 0 14px;}
+
+  /* ---- Directors grid ---- */
+  .directors-section{background:var(--c-bg); padding:50px 0 100px;}
+  .directors-section .section-head{margin-bottom:36px;}
+  .directors-section .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); font-weight:600; display:block; margin-bottom:8px;}
+  .directors-section h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3vw,30px); margin:0; color:var(--c-text);}
+  .directors-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .director-card{
+    position:relative; background:var(--c-paper); border:1px solid var(--c-line); border-radius:16px; padding:30px 26px;
+    opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease, transform .3s ease;
+  }
+  .director-card.in-view{opacity:1; transform:translateY(0);}
+  .director-card:hover{box-shadow:0 20px 40px -24px rgba(18,20,28,.3); transform:translateY(-6px);}
+  .director-card .rivet{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--c-line);}
+  .director-card .rivet.tl{top:12px; left:12px;} .director-card .rivet.tr{top:12px; right:12px;}
+  .director-card .rivet.bl{bottom:12px; left:12px;} .director-card .rivet.br{bottom:12px; right:12px;}
+  .avatar-circle{
+    width:58px; height:58px; border-radius:50%;
+    background:linear-gradient(135deg, var(--c-copper), #8f5730);
+    color:#fff; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .director-card h4{font-family:'Space Grotesk', sans-serif; font-size:17px; margin:0 0 6px; color:var(--c-text);}
+  .director-card p{color:var(--c-muted); font-size:13.5px; margin:0;}
+
+  @media (max-width: 900px){
+    .page-hero{padding:130px 0 80px;}
+    .founder-card{grid-template-columns:1fr; padding:16px;}
+    .founder-photo{aspect-ratio:16/10;}
+    .founder-copy{padding:8px 8px 8px;}
+    .directors-grid{grid-template-columns:1fr;}
+    .subnav .wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
+    .crumb, .page-hero h1, .page-hero .lead, .founder-card, .director-card{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+</style>
+</head>
+<body class="about-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" id="siteNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+      <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="active"><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a class="nav-cta" href="contact.html">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<header class="page-hero">
+  <div class="page-hero-grid"></div>
+  <svg class="trace-line" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M -20 380 H 300 V 260 H 620 V 140 H 900" />
+    <path d="M 1220 120 H 940 V 300 H 700" />
+    <circle cx="300" cy="380" r="4" />
+    <circle cx="620" cy="260" r="3.5" />
+    <circle cx="900" cy="140" r="4" />
+    <circle cx="700" cy="300" r="3.5" />
+  </svg>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><a href="about.html">About Us</a><span class="sep">/</span><span class="here">Management</span></div>
+    <h1>The people behind <em>every panel.</em></h1>
+    <p class="lead">Engineers, supervisors and technicians who've built Suraj Electricals' reputation for reliability since 2017.</p>
+  </div>
+</header>
+
+<!-- ============ SUB-NAV ============ -->
+<nav class="subnav">
+  <div class="wrap">
+    <a href="about.html">Profile</a>
+    <a href="management.html" class="active">Management</a>
+  </div>
+</nav>
+
+<!-- ============ FOUNDER ============ -->
+<section class="founder-section">
+  <div class="wrap">
+    <div class="founder-card">
+      <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+      <div class="founder-photo">
+        <img src="images/founder.jpg" alt="Suraj Reswal, Founder of Suraj Electricals" />
+      </div>
+      <div class="founder-copy">
+        <span class="founder-tag">Founder · Est. 2017</span>
+        <h2>Suraj Reswal</h2>
+        <p class="founder-role">Founder, Suraj Electricals — Electrical Engineer</p>
+        <p>A graduate in Electrical Engineering, Suraj Reswal founded Suraj Electricals in 2017 as a complete electrical manufacturing company.</p>
+        <p>He started the company after gaining hands-on experience across the installation of power sector equipment, testing of electrical panels against drawings and schematics, and installation of electrical projects. Under his leadership, the company achieved rapid success with the help of a devoted, hardworking technical team.</p>
+        <p>Recognizing a growing market and clients in search of a result-oriented, techno-commercial partner, he built Suraj Electricals to complete every project-related job end to end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECTORS ============ -->
+<section class="directors-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Leadership</span>
+      <h2>Other Directors</h2>
+    </div>
+    <div class="directors-grid">
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">JR</div>
+        <h4>Mr. Jai Narayan Reswal</h4>
+        <p>Director, Suraj Electricals</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Need a custom panel solution?</h2>
+    <p>Tell us your load, site, and standards — we'll spec the panel to match.</p>
+    <a class="btn btn-primary" href="contact.html">Contact Our Team &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+          <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+        </a>
+        <p>Manufacturer of complete electrical panels, electrical panel projects, and all types of electrical work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-cta-col">
+        <h4>Get in Touch</h4>
+        <p>Have a panel spec, load, or site requirement to discuss?</p>
+        <a class="btn btn-ghost footer-cta-btn" href="contact.html">Contact Us <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
+      <span>Designed &amp; built in-house</span>
+    </div>
+  </div>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/modern.js"></script>
+<script>
+  (function(){
+    var targets = document.querySelectorAll('.founder-card, .director-card');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, {threshold:.15});
+      targets.forEach(function(t, i){
+        t.style.transitionDelay = (i * 0.08) + 's';
+        io.observe(t);
+      });
+    } else {
+      targets.forEach(function(t){ t.classList.add('in-view'); });
+    }
+  })();
+</script>
+</body>
+</html>

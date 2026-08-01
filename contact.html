@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Contact Suraj Electricals — manufacturer of Power Control Centres, Motor Control Centres, Capacitor Panels and AMF Panels. Get in touch for your panel requirement." />
+<meta name="author" content="Suraj Electricals" />
+<title>Contact Us | Suraj Electricals</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="css/modern.css" rel="stylesheet" />
+
+<style>
+  /* ===== Contact page — scoped extension of the modern.css system ===== */
+  .contact-page{
+    --c-ink:#12141c;
+    --c-ink-soft:#1b1e29;
+    --c-copper:var(--copper, #b8703f);
+    --c-copper-soft:rgba(184,112,63,.14);
+    --c-paper:#ffffff;
+    --c-bg:#f7f6f3;
+    --c-line:#e6e3dc;
+    --c-text:#2b2c31;
+    --c-muted:#6b6f76;
+  }
+
+  /* ---- Page hero ---- */
+  .page-hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--c-ink);
+    padding:150px 0 96px;
+    color:#fff;
+  }
+  .page-hero .wrap{position:relative;z-index:2;}
+  .page-hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 80% at 30% 20%, #000 30%, transparent 75%);
+  }
+  .page-hero svg.trace-line{
+    position:absolute; inset:0; width:100%; height:100%;
+    pointer-events:none;
+  }
+  .page-hero svg.trace-line path{
+    fill:none; stroke:var(--c-copper); stroke-width:1.4; opacity:.55;
+    stroke-dasharray:8 7;
+    animation:dashFlow 5s linear infinite;
+  }
+  .page-hero svg.trace-line circle{
+    fill:var(--c-copper);
+    animation:nodePulse 2.6s ease-in-out infinite;
+  }
+  @keyframes dashFlow{to{stroke-dashoffset:-150;}}
+  @keyframes nodePulse{
+    0%,100%{opacity:.4; r:3;}
+    50%{opacity:1; r:5;}
+  }
+
+  .crumb{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:22px;
+    opacity:0; animation:fadeUp .7s ease forwards;
+  }
+  .crumb a{color:rgba(255,255,255,.75); text-decoration:none;}
+  .crumb a:hover{color:var(--c-copper);}
+  .crumb span.sep{color:rgba(255,255,255,.3);}
+  .crumb span.here{color:var(--c-copper);}
+
+  .page-hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(34px, 5vw, 56px);
+    line-height:1.08;
+    margin:0 0 18px;
+    max-width:640px;
+    opacity:0; animation:fadeUp .8s ease .12s forwards;
+  }
+  .page-hero h1 em{
+    font-style:normal; color:var(--c-copper);
+  }
+  .required {
+    color: #dc3545;
+    font-weight: bold;
+    margin-left: 2px;
+  }
+  .page-hero .lead{
+    font-size:17px; line-height:1.65;
+    color:rgba(255,255,255,.72);
+    max-width:520px;
+    margin:0;
+    opacity:0; animation:fadeUp .8s ease .24s forwards;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ---- Info cards ---- */
+  .contact-info{
+    background:var(--c-bg);
+    padding:80px 0 20px;
+  }
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+    margin-top:-118px;
+    position:relative;
+    z-index:3;
+  }
+  .info-card{
+    position:relative;
+    background:var(--c-paper);
+    border-radius:14px;
+    padding:32px 28px 28px;
+    box-shadow:0 18px 40px -20px rgba(18,20,28,.28);
+    border:1px solid var(--c-line);
+    opacity:0; transform:translateY(24px);
+    transition:transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .35s ease;
+  }
+  .info-card.in-view{opacity:1; transform:translateY(0);}
+  .info-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 26px 50px -18px rgba(18,20,28,.32);
+  }
+  .info-card .rivet{
+    position:absolute; width:6px; height:6px; border-radius:50%;
+    background:var(--c-line);
+  }
+  .info-card .rivet.tl{top:12px; left:12px;} .info-card .rivet.tr{top:12px; right:12px;}
+  .info-card .rivet.bl{bottom:12px; left:12px;} .info-card .rivet.br{bottom:12px; right:12px;}
+
+  .info-icon{
+    width:46px; height:46px; border-radius:10px;
+    background:var(--c-copper-soft);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+  }
+  .info-icon svg{width:22px; height:22px; stroke:var(--c-copper);}
+  .info-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--c-copper);
+    display:inline-block; margin-bottom:8px;
+  }
+  .info-card h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:19px; margin:0 0 10px; color:var(--c-text);
+  }
+  .info-card p{
+    margin:0; color:var(--c-muted); font-size:14.5px; line-height:1.6;
+  }
+  .info-card a.info-action{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:14px; font-size:13.5px; font-weight:600;
+    color:var(--c-text); text-decoration:none;
+    border-bottom:1px solid var(--c-copper);
+    padding-bottom:2px;
+  }
+  .info-card a.info-action:hover{color:var(--c-copper);}
+
+  /* ---- Split: form + map ---- */
+  .contact-split{
+    background:var(--c-bg);
+    padding:90px 0 110px;
+  }
+  .split-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .split-grid .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--c-copper); font-weight:600;
+    display:block; margin-bottom:10px;
+  }
+  .split-grid h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(26px,3vw,34px);
+    margin:0 0 14px; color:var(--c-text);
+  }
+  .split-grid > .form-col > p{
+    color:var(--c-muted); font-size:15px; line-height:1.65;
+    max-width:460px; margin:0 0 30px;
+  }
+
+  .rfq-form{
+    background:var(--c-paper);
+    border:1px solid var(--c-line);
+    border-radius:16px;
+    padding:32px;
+    box-shadow:0 20px 46px -26px rgba(18,20,28,.25);
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .field{margin-bottom:18px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{
+    display:block; font-size:12.5px; font-weight:600;
+    letter-spacing:.03em; color:var(--c-text); margin-bottom:7px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%; box-sizing:border-box;
+    border:1.4px solid var(--c-line);
+    border-radius:9px;
+    padding:11px 13px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14.5px; color:var(--c-text);
+    background:#fff;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field textarea{resize:vertical; min-height:104px;}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--c-copper);
+    box-shadow:0 0 0 3px var(--c-copper-soft);
+  }
+  .rfq-submit{
+    width:100%;
+    border:none; cursor:pointer;
+    background:var(--c-ink);
+    color:#fff;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600; font-size:15px;
+    padding:14px 20px;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:background .25s ease, transform .15s ease;
+  }
+  .rfq-submit:hover{background:var(--c-copper); transform:translateY(-2px);}
+  .rfq-submit:active{transform:translateY(0);}
+  .rfq-submit svg{width:16px; height:16px; transition:transform .25s ease;}
+  .rfq-submit:hover svg{transform:translateX(3px);}
+
+  .form-success{
+    display:none;
+    align-items:center; gap:12px;
+    background:#f1f8f0; border:1px solid #cfe8ca;
+    color:#2f6b2c;
+    border-radius:10px; padding:14px 16px;
+    font-size:14px; margin-top:16px;
+  }
+  .form-success.show{display:flex; animation:fadeUp .5s ease forwards;}
+  .form-success svg{width:20px; height:20px; flex:none; stroke:#2f6b2c;}
+
+  .map-col{
+    position:sticky; top:110px;
+  }
+  .map-frame{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--c-line);
+    box-shadow:0 20px 46px -26px rgba(18,20,28,.25);
+    position:relative;
+  }
+  .map-frame iframe{display:block; width:100%; height:340px; border:0;}
+  .map-badge{
+    position:absolute; left:16px; bottom:16px;
+    background:rgba(18,20,28,.88);
+    color:#fff; font-size:12.5px;
+    padding:10px 14px; border-radius:9px;
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Sans', sans-serif;
+    backdrop-filter:blur(4px);
+  }
+  .map-badge svg{width:15px; height:15px; stroke:var(--c-copper); flex:none;}
+
+  .hours-card{
+    margin-top:20px;
+    background:var(--c-paper);
+    border:1px solid var(--c-line);
+    border-radius:14px;
+    padding:22px 24px;
+  }
+  .hours-card h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px; margin:0 0 12px; color:var(--c-text);
+  }
+  .hours-row{
+    display:flex; justify-content:space-between;
+    font-size:13.5px; color:var(--c-muted);
+    padding:7px 0; border-bottom:1px dashed var(--c-line);
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row span:last-child{color:var(--c-text); font-weight:500;}
+
+  @media (max-width: 900px){
+    .info-grid{grid-template-columns:1fr; margin-top:36px;}
+    .page-hero{padding:130px 0 150px;}
+    .split-grid{grid-template-columns:1fr; gap:40px;}
+    .map-col{position:static;}
+    .form-row{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
+    .crumb, .page-hero h1, .page-hero .lead, .info-card{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+</style>
+</head>
+<body class="contact-page">
+
+<!-- ============ NAV ============ -->
+<nav class="site-nav" id="siteNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+      <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li class="active"><a href="contact.html">Contact Us</a></li>
+      <li><a class="nav-cta" href="contact.html">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<header class="page-hero">
+  <div class="page-hero-grid"></div>
+  <svg class="trace-line" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M -20 380 H 300 V 260 H 620 V 140 H 900" />
+    <path d="M 1220 120 H 940 V 300 H 700" />
+    <circle cx="300" cy="380" r="4" />
+    <circle cx="620" cy="260" r="3.5" />
+    <circle cx="900" cy="140" r="4" />
+    <circle cx="700" cy="300" r="3.5" />
+  </svg>
+  <div class="wrap">
+    <div class="crumb">
+      <a href="index.html">Home</a><span class="sep">/</span><span class="here">Contact Us</span>
+    </div>
+    <h1>Let's talk about your <em>next panel.</em></h1>
+    <p class="lead">From spec to switch-on — reach our team directly, or send your load, site and requirement below and we'll respond within one business day.</p>
+  </div>
+</header>
+
+<!-- ============ INFO CARDS ============ -->
+<section class="contact-info">
+  <div class="wrap">
+    <div class="info-grid">
+
+      <div class="info-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke-width="1.6"/></svg>
+        </div>
+        <span class="info-tag">122012</span>
+        <h3>Visit the Facility</h3>
+        <p>Plot no. 4, Kherki Daula Village Rd, Kherki Daula, Sector 76, Gurugram, Haryana 122012</p>
+        <a class="info-action" href="https://maps.app.goo.gl/195qtjTsLw7v97t66" target="_blank" rel="noopener">Get Directions <span class="arrow">&rarr;</span></a>
+      </div>
+
+      <div class="info-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h3.2l1.4 5-2 1.4a12 12 0 0 0 6 6l1.4-2 5 1.4V19a2 2 0 0 1-2 2C9.6 21 3 14.4 3 6a2 2 0 0 1 1-2Z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="info-tag">Sales Line</span>
+        <h3>Call the Team</h3>
+        <p>Speak directly with our sales engineers about panel specs, lead times and site requirements.</p>
+        <a class="info-action" href="tel:+919971241461">+91-9971241461 <span class="arrow">&rarr;</span></a>
+      </div>
+
+      <div class="info-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="info-tag">RFQ</span>
+        <h3>Email Us</h3>
+        <p>Send drawings, load lists or a general enquiry — we usually reply within a business day.</p>
+        <a class="info-action" href="mailto:sales@surajelectricals.com">sales@surajelectricals.com <span class="arrow">&rarr;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM + MAP ============ -->
+<section class="contact-split">
+  <div class="wrap">
+    <div class="split-grid">
+
+      <div class="form-col reveal">
+        <span class="eyebrow">Request a Quote</span>
+        <h2>Tell us what you're building.</h2>
+        <p>Share your panel type, load and site details and our engineering team will get back to you with a spec and quote.</p>
+
+        <form class="rfq-form" id="rfqForm">
+          <input type="hidden" name="access_key" value="5b65022b-6e9d-4d8d-b139-4688279f2f83">
+          <div class="form-row">
+            <div class="field">
+              <label for="fName">Full Name<span class="required">*</span></label>
+              <input type="text" id="fName" name="name" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="fPhone">Phone Number<span class="required">*</span></label>
+              <input type="tel" id="fPhone" name="phone" placeholder="+91 XXXXX XXXXX" required pattern="^(\+91[\-\s]?)?[6-9]\d{9}$" title="Enter a valid 10-digit Indian mobile number" />
+            </div>
+
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fEmail">Email Address<span class="required">*</span></label>
+              <input type="email" id="fEmail" name="email" placeholder="you@company.com" required />
+            </div>
+            <div class="field">
+              <label for="fPanel">Panel Type</label>
+              <select id="fPanel" name="panel" required>
+                <option value="">Select a category</option>
+                <option>Power Control Centre (PCC)</option>
+                <option>Motor Control Centre (MCC)</option>
+                <option>Capacitor Panel</option>
+                <option>AMF Panel</option>
+                <option>Not sure / Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="fMsg">Requirement Details<span class="required">*</span></label>
+            <textarea id="fMsg" name="message" placeholder="Load, site, standards, timeline..." required></textarea>
+          </div>
+          <button type="submit" class="rfq-submit">
+            Send Requirement
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="form-success" id="formSuccess">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Thanks — your requirement has been noted. Our team will reach out shortly.</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="map-col reveal">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3176.0670039396723!2d76.98328457494819!3d28.399085294644465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3d0012d908b9%3A0x344fd254d26c593a!2sSuraj%20Electricals!5e1!3m2!1sen!2sin!4v1785544857323!5m2!1sen!2sin" width="600" height="450" style="border:0;" 
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Suraj Electricals location"></iframe>
+          <div class="map-badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            Sector 76, Gurugram
+          </div>
+        </div>
+        <div class="hours-card">
+          <h4>Working Hours</h4>
+          <div class="hours-row"><span>Monday – Saturday</span><span>9:30 AM – 6:30 PM</span></div>
+          <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Need a custom panel solution?</h2>
+    <p>Tell us your load, site, and standards — we'll spec the panel to match.</p>
+    <a class="btn btn-primary" href="tel:+919971241461">Call Our Team &rarr;</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="images/SE-logo.png" alt="Suraj Electricals logo" /></span>
+          <span class="brand-name">Suraj Electricals<small>Electrical Panel Manufacturer</small></span>
+        </a>
+        <p>Manufacturer of complete electrical panels, electrical panel projects, and all types of electrical work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-cta-col">
+        <h4>Get in Touch</h4>
+        <p>Have a panel spec, load, or site requirement to discuss?</p>
+        <a class="btn btn-ghost footer-cta-btn" href="contact.html">Contact Us <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
+      <span>Designed &amp; built in-house</span>
+    </div>
+  </div>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/modern.js"></script>
+<script>
+  // Fallback reveal-on-scroll for elements not covered by js/modern.js
+  (function(){
+    var cards = document.querySelectorAll('.info-card');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('in-view');
+            io.unobserve(e.target);
+          }
+        });
+      }, {threshold:.15});
+      cards.forEach(function(c, i){
+        c.style.transitionDelay = (i * 0.1) + 's';
+        io.observe(c);
+      });
+    } else {
+      cards.forEach(function(c){ c.classList.add('in-view'); });
+    }
+  })();
+
+  // Contact form — submits to Web3Forms, then shows the success message
+  document.getElementById('rfqForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = this;
+    var success = document.getElementById('formSuccess');
+    var submitBtn = form.querySelector('.rfq-submit');
+    var originalBtnText = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      if (data.success) {
+        success.classList.add('show');
+        form.querySelectorAll('input, textarea, select').forEach(function(el){
+          if (el.type !== 'hidden') el.value = '';
+        });
+      } else {
+        alert('Something went wrong sending your requirement. Please try again or call us directly.');
+      }
+    })
+    .catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      alert('Something went wrong sending your requirement. Please check your connection and try again.');
+    });
+  });
+</script>
+</body>
+</html>
