@@ -1,8 +1,8 @@
-# Suraj Electricals — Website Redesign
+# Suraj Electricals — Website design
 
 Live: https://www.surajelectricals.com
 
-I redesigned this site for Suraj Electricals, an electrical panel manufacturer based in Gurugram. The original was an old Bootstrap template — I rebuilt it from scratch with a custom design, animations, and no frameworks.
+I designed this site for Suraj Electricals, an electrical panel manufacturer based in Gurugram. The original was an old Bootstrap template — I rebuilt it from scratch with a custom design, animations, and no frameworks.
 
 ## What I built
 
@@ -34,3 +34,5 @@ This is a real client project. The code and design here are shared to show my wo
 ---
 
 Built by [Rinki Rajput](https://github.com/rinkirajput)
+
+Email: rinkirjput@gmail.com
