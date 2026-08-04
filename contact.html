@@ -293,10 +293,22 @@
   }
   .hours-row:last-child{border-bottom:none;}
   .hours-row span:last-child{color:var(--c-text); font-weight:500;}
+  .info-phones{ display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+  .info-phone{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--font-mono); font-weight:600; font-size:15px;
+    color: var(--ink); text-decoration:none;
+    transition: color .2s;
+  }
+  .info-phone:hover{ color: var(--copper); }
+  .info-phone .dot{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--copper); flex-shrink:0;
+  }
 
   @media (max-width: 900px){
     .info-grid{grid-template-columns:1fr; margin-top:36px;}
-    .page-hero{padding:130px 0 150px;}
+    .page-hero{padding:70px 0 70px;}
     .split-grid{grid-template-columns:1fr; gap:40px;}
     .map-col{position:static;}
     .form-row{grid-template-columns:1fr;}
@@ -363,9 +375,11 @@
         <div class="info-icon">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke-width="1.6"/></svg>
         </div>
-        <span class="info-tag">122012</span>
+        <span class="info-tag">122004</span>
         <h3>Visit the Facility</h3>
-        <p>Plot no. 4, Kherki Daula Village Rd, Kherki Daula, Sector 76, Gurugram, Haryana 122012</p>
+        
+        <p><strong>Manufacturing Unit:</strong> Plot No 22, Sector 76, Khedki Daula, Gurugram, Haryana 122004 — Near Groz Tools</p>
+        <p style="margin-top:10px;"><strong>Factory & Registered Office:</strong> 416, Capital 2, Science City Road, Ahmedabad, Gujarat 380060</p>
         <a class="info-action" href="https://maps.app.goo.gl/195qtjTsLw7v97t66" target="_blank" rel="noopener">Get Directions <span class="arrow">&rarr;</span></a>
       </div>
 
@@ -377,7 +391,9 @@
         <span class="info-tag">Sales Line</span>
         <h3>Call the Team</h3>
         <p>Speak directly with our sales engineers about panel specs, lead times and site requirements.</p>
-        <a class="info-action" href="tel:+919971241461">+91-9971241461 <span class="arrow">&rarr;</span></a>
+        <br>
+        <a class="info-phone" href="tel:+919971241461"><span class="dot"></span>+91-99712-41461</a>
+        <a class="info-phone" href="tel:+919999998661"><span class="dot"></span>+91-99999-98661</a>
       </div>
 
       <div class="info-card">
@@ -511,7 +527,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
-      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rajput</a></span>
+      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rana</a></span>
     </div>
   </div>
   <button id="backToTop" class="back-to-top" aria-label="Back to top">

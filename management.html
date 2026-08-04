@@ -107,7 +107,29 @@
   .director-card h4{font-family:'Space Grotesk', sans-serif; font-size:17px; margin:0 0 6px; color:var(--c-text);}
   .director-card p{color:var(--c-muted); font-size:13.5px; margin:0;}
 
+  /* ---- Department heads ---- */
+  .heads-section{background:var(--c-bg); padding:0 0 100px;}
+  .heads-section .section-head{margin-bottom:36px;}
+  .heads-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
+  .heads-grid .director-card{padding:24px 20px;}
+  .heads-grid .avatar-circle{width:48px; height:48px; font-size:16px; margin-bottom:14px;}
+  .heads-grid .director-card h4{font-size:15.5px;}
+  .heads-grid .director-card p{font-size:13px;}
+
+  /* ---- Enquiry note ---- */
+  .enquiry-note{
+    margin-top:36px; background:var(--c-paper); border:1px solid var(--c-line); border-radius:14px;
+    padding:22px 26px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .enquiry-note .e-ico{width:38px; height:38px; border-radius:10px; background:var(--c-copper-soft); display:flex; align-items:center; justify-content:center; flex:none;}
+  .enquiry-note .e-ico svg{width:18px; height:18px; stroke:var(--c-copper);}
+  .enquiry-note p{margin:0; font-size:13.5px; color:var(--c-muted); flex:1; min-width:220px;}
+  .enquiry-note p strong{color:var(--c-text);}
+  .enquiry-note a{color:var(--c-copper); font-weight:600; text-decoration:none;}
+  .enquiry-note a:hover{text-decoration:underline;}
+
   @media (max-width: 900px){
+    .heads-grid{grid-template-columns:1fr 1fr;}
     .page-hero{padding:130px 0 80px;}
     .founder-card{grid-template-columns:1fr; padding:16px;}
     .founder-photo{aspect-ratio:16/10;}
@@ -182,9 +204,9 @@
         <img src="images/founder.jpg" alt="Suraj Reswal, Founder of Suraj Electricals" />
       </div>
       <div class="founder-copy">
-        <span class="founder-tag">Founder · Est. 2017</span>
+        <span class="founder-tag">Founder &amp; Managing Director · Est. 2017</span>
         <h2>Suraj Reswal</h2>
-        <p class="founder-role">Founder, Suraj Electricals — Electrical Engineer</p>
+        <p class="founder-role">Founder &amp; Managing Director, Suraj Electricals — Engineering in Electrical</p>
         <p>A graduate in Electrical Engineering, Suraj Reswal founded Suraj Electricals in 2017 as a complete electrical manufacturing company.</p>
         <p>He started the company after gaining hands-on experience across the installation of power sector equipment, testing of electrical panels against drawings and schematics, and installation of electrical projects. Under his leadership, the company achieved rapid success with the help of a devoted, hardworking technical team.</p>
         <p>Recognizing a growing market and clients in search of a result-oriented, techno-commercial partner, he built Suraj Electricals to complete every project-related job end to end.</p>
@@ -203,10 +225,63 @@
     <div class="directors-grid">
       <div class="director-card">
         <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
-        <div class="avatar-circle">JR</div>
-        <h4>Mr. Jai Narayan Reswal</h4>
-        <p>Director, Suraj Electricals</p>
+        <div class="avatar-circle">JN</div>
+        <h4>Mr. Jai Narain</h4>
+        <p>Director, Projects</p>
       </div>
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">CG</div>
+        <h4>Mr. Chandresh Gajjar</h4>
+        <p>Technical Director</p>
+      </div>
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">SY</div>
+        <h4>Swati Yadav</h4>
+        <p>Director, HR &amp; Administration</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPARTMENT HEADS ============ -->
+<section class="heads-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Operations</span>
+      <h2>Department Heads</h2>
+    </div>
+    <div class="heads-grid">
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">SS</div>
+        <h4>Sujeet Singh</h4>
+        <p>Projects Head</p>
+      </div>
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">SR</div>
+        <h4>Satish Rana</h4>
+        <p>Designing Head</p>
+      </div>
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">K</div>
+        <h4>Krishna</h4>
+        <p>Production Head</p>
+      </div>
+      <div class="director-card">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="avatar-circle">SJ</div>
+        <h4>Sandeep Jangra</h4>
+        <p>Sales &amp; Services</p>
+      </div>
+    </div>
+
+    <div class="enquiry-note">
+      <span class="e-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p><strong>Enquiries &amp; complaints:</strong> reach our team directly at <a href="mailto:sales@surajelectricals.com">sales@surajelectricals.com</a> or call <a href="tel:+919971241461">+91-9971241461</a>.</p>
     </div>
   </div>
 </section>
@@ -248,7 +323,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
-      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rajput</a></span>
+      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rana</a></span>
     </div>
   </div>
   <button id="backToTop" class="back-to-top" aria-label="Back to top">

@@ -99,9 +99,80 @@
     .acc-title h3{font-size:16px;}
   }
 
+  /* ---- Current projects ---- */
+  .current-projects{background:var(--c-paper); padding:90px 0; border-bottom:1px solid var(--c-line);}
+  .current-projects .section-head{max-width:640px; margin:0 0 40px;}
+  .current-projects .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); font-weight:600; display:inline-flex; align-items:center; gap:8px;}
+  .live-dot{width:7px; height:7px; border-radius:50%; background:#3aa76d; position:relative; flex:none;}
+  .live-dot::after{
+    content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid #3aa76d;
+    animation:livePulse 1.8s ease-out infinite;
+  }
+  @keyframes livePulse{0%{transform:scale(.4); opacity:1;} 100%{transform:scale(1.8); opacity:0;}}
+  .current-projects h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3vw,32px); margin:10px 0 10px; color:var(--c-text);}
+  .current-projects .section-head p{color:var(--c-muted); font-size:14.5px; margin:0; line-height:1.65;}
+
+  .cp-grid{display:grid; grid-template-columns:1.6fr 1fr; gap:22px;}
+  .cp-card{
+    position:relative; background:var(--c-bg); border:1px solid var(--c-line); border-radius:18px; padding:32px;
+    opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease, box-shadow .3s ease;
+  }
+  .cp-card.in-view{opacity:1; transform:translateY(0);}
+  .cp-card:hover{box-shadow:0 20px 44px -26px rgba(18,20,28,.25);}
+  .cp-status{
+    display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#3aa76d;
+    background:rgba(58,167,109,.12); padding:6px 12px; border-radius:999px; margin-bottom:16px;
+  }
+  .cp-status .live-dot{background:#3aa76d;}
+  .cp-card h3{font-family:'Space Grotesk', sans-serif; font-size:19px; margin:0 0 8px; color:var(--c-text);}
+  .cp-card p{font-size:14px; color:var(--c-muted); line-height:1.65; margin:0 0 20px;}
+  .cp-sites{display:flex; flex-wrap:wrap; gap:9px;}
+  .cp-site{
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--c-text);
+    background:var(--c-paper); border:1px solid var(--c-line); padding:7px 12px; border-radius:999px;
+  }
+  .cp-site svg{width:12px; height:12px; stroke:var(--c-copper); flex:none;}
+
+  .cp-photos{display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:20px;}
+  .cp-photo{position:relative; border-radius:10px; overflow:hidden; aspect-ratio:1; cursor:default;}
+  .cp-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
+  .cp-photo:hover img{transform:scale(1.1);}
+  .cp-photo span{
+    position:absolute; left:0; right:0; bottom:0; padding:5px 6px 4px;
+    background:linear-gradient(180deg, transparent, rgba(18,20,28,.85));
+    color:#fff; font-size:9.5px; line-height:1.2; font-weight:600;
+  }
+
+  .cp-side{display:flex; flex-direction:column;}
+  .cp-side .cp-image{border-radius:12px; overflow:hidden; margin-bottom:18px; aspect-ratio:16/11;}
+  .cp-side .cp-image img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+  .cp-side:hover .cp-image img{transform:scale(1.06);}
+  .cp-side .cp-loc{
+    display:flex; align-items:center; gap:8px; font-size:13px; color:var(--c-text); font-weight:600; margin-top:auto;
+  }
+  .cp-side .cp-loc svg{width:15px; height:15px; stroke:var(--c-copper); flex:none;}
+
+  .cp-banner{
+    margin-top:22px; position:relative; border-radius:16px; overflow:hidden;
+    opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease;
+  }
+  .cp-banner.in-view{opacity:1; transform:translateY(0);}
+  .cp-banner img{width:100%; height:280px; object-fit:cover; display:block;}
+  .cp-banner .cp-banner-cap{
+    position:absolute; left:0; right:0; bottom:0; padding:20px 26px;
+    background:linear-gradient(180deg, transparent, rgba(18,20,28,.88));
+    color:#fff; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:600;
+  }
+
+  @media (max-width: 900px){
+    .cp-grid{grid-template-columns:1fr;}
+    .cp-photos{grid-template-columns:repeat(3,1fr);}
+  }
+
   @media (prefers-reduced-motion: reduce){
     .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
-    .crumb, .page-hero h1, .page-hero .lead, .hero-tally, .acc-item{
+    .crumb, .page-hero h1, .page-hero .lead, .hero-tally, .acc-item, .cp-card, .live-dot::after{
       animation:none !important; opacity:1 !important; transform:none !important;
     }
   }
@@ -152,6 +223,58 @@
     </div>
   </div>
 </header>
+
+<!-- ============ CURRENT PROJECTS ============ -->
+<section class="current-projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="live-dot"></span>Live On Site</span>
+      <h2>Currently running projects</h2>
+      <p>Beyond delivered panels, our team is on-site right now across a multi-state infrastructure rollout.</p>
+    </div>
+    <div class="cp-grid">
+
+      <div class="cp-card">
+        <span class="cp-status"><span class="live-dot"></span>Ongoing</span>
+        <h3>SILO Food Corporation — Joint Venture with Adani Group</h3>
+        <p>Electrical installation and commissioning across a pan-India network of grain silo storage facilities, delivered in joint venture with the Adani Group.</p>
+        <div class="cp-photos">
+          <div class="cp-photo"><img src="images/silo-palwal.jpg" alt="SILO site, Palwal, Haryana" /><span>Palwal, HR</span></div>
+          <div class="cp-photo"><img src="images/silo-lalpur.jpg" alt="SILO site, Lalpur, UP" /><span>Lalpur, UP</span></div>
+          <div class="cp-photo"><img src="images/silo-khurja.jpg" alt="SILO site, Khurja, UP" /><span>Khurja, UP</span></div>
+          <div class="cp-photo"><img src="images/silo-samalkha.jpg" alt="SILO site, Samalkha, Haryana" /><span>Samalkha, HR</span></div>
+          <div class="cp-photo"><img src="images/silo-gharaunda.jpg" alt="SILO site, Gharaunda, Haryana" /><span>Gharaunda, HR</span></div>
+          <div class="cp-photo"><img src="images/silo-kanpur.jpg" alt="SILO site, Kanpur, UP" /><span>Kanpur, UP</span></div>
+        </div>
+        <div class="cp-sites">
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Palwal, Haryana</span>
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Lalpur, UP</span>
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Khurja, UP</span>
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Samalkha, Haryana</span>
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Gharaunda, Haryana</span>
+          <span class="cp-site"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Kanpur, UP</span>
+        </div>
+      </div>
+
+      <div class="cp-card cp-side">
+        <span class="cp-status"><span class="live-dot"></span>Ongoing</span>
+        <div class="cp-image"><img src="images/adani-warehouse-exterior.jpg" alt="Adani Logistics warehouse, Tauru, Haryana" /></div>
+        <h3>Adani Logistics Warehouse</h3>
+        <p>Complete electrification work at the Adani Logistics warehouse facility.</p>
+        <div class="cp-loc">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.2 7-12.4A7 7 0 0 0 5 9.6C5 14.8 12 22 12 22Z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          Tauru, Haryana
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cp-banner reveal">
+      <img src="images/substation-installation.jpg" alt="Substation and DG installation at project site" />
+      <div class="cp-banner-cap">Substation &amp; DG installation across our live sites</div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ ACCORDION ============ -->
 <section class="projects-list">
@@ -305,7 +428,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
-      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rajput</a></span>
+      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rana</a></span>
     </div>
   </div>
   <button id="backToTop" class="back-to-top" aria-label="Back to top">
@@ -353,6 +476,19 @@
       });
     } else {
       items.forEach(function(t){ t.classList.add('in-view'); });
+    }
+
+    // Current-projects cards reveal
+    var cpCards = document.querySelectorAll('.cp-card, .cp-banner');
+    if('IntersectionObserver' in window){
+      var io2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io2.unobserve(e.target); }
+        });
+      }, {threshold:.15});
+      cpCards.forEach(function(c, i){ c.style.transitionDelay = (i * 0.1) + 's'; io2.observe(c); });
+    } else {
+      cpCards.forEach(function(c){ c.classList.add('in-view'); });
     }
   })();
 </script>

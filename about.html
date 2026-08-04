@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="About Suraj Electricals — electrical panel manufacturer established 2017, building Power Control Centres, MCCs, Capacitor and AMF panels in-house from Gurugram, Haryana." />
+<meta name="description" content="About Suraj Electricals — ISO 9001:2015, ISO 14001 &amp; OHSAS 18001 certified electrical panel manufacturer, and a Siemens SIEPAN Elite Licensed Partner, building panels in Gurugram since 2017." />
 <meta name="author" content="Suraj Electricals" />
 <title>About Us — Profile | Suraj Electricals</title>
 
@@ -63,6 +63,18 @@
   .subnav a:hover{color:var(--c-text);}
   .subnav a.active{background:var(--c-copper-soft); color:var(--c-copper); font-weight:600;}
 
+  /* ---- Certification strip ---- */
+  .cert-strip{background:var(--c-paper); padding:30px 0; border-bottom:1px solid var(--c-line);}
+  .cert-strip .wrap{display:flex; align-items:center; gap:22px; flex-wrap:wrap;}
+  .cert-strip .cert-label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--c-copper); font-weight:600; flex:none;}
+  .cert-chips{display:flex; gap:10px; flex-wrap:wrap; flex:1;}
+  .cert-chip{
+    display:inline-flex; align-items:center; gap:9px;
+    font-size:12.5px; font-weight:500; color:var(--c-text); background:var(--c-bg); border:1px solid var(--c-line);
+    padding:6px 14px 6px 6px; border-radius:999px; white-space:nowrap;
+  }
+  .cert-chip img{width:28px; height:28px; border-radius:50%; object-fit:contain; flex:none; background:#fff;}
+
   /* ---- Story split ---- */
   .story{background:var(--c-bg); padding:90px 0;}
   .story-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center;}
@@ -78,6 +90,43 @@
   .stat-strip .stat-num span{color:var(--c-copper);}
   .stat-strip .stat-label{font-size:12.5px; color:var(--c-muted); margin-top:6px; letter-spacing:.02em;}
 
+  /* ---- Siemens spotlight ---- */
+  .siemens-section{background:var(--c-paper); padding:0 0 90px;}
+  .siemens-card{
+    position:relative; display:grid; grid-template-columns:1fr 1.3fr; align-items:stretch; gap:0;
+    background:var(--c-ink); color:#fff; border-radius:20px;
+    overflow:hidden;
+    opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;
+  }
+  .siemens-card.in-view{opacity:1; transform:translateY(0);}
+  .siemens-card::before{
+    content:""; position:absolute; width:460px; height:460px; border-radius:50%;
+    background:radial-gradient(circle, var(--c-copper-soft), transparent 70%);
+    top:-200px; left:-140px; pointer-events:none; z-index:1;
+  }
+  .siemens-visual{position:relative; min-height:280px;}
+  .siemens-visual img{width:100%; height:100%; object-fit:cover; display:block;}
+  .siemens-visual .siemens-cert-tab{
+    position:absolute; right:14px; bottom:14px; display:flex; align-items:center; gap:8px;
+    background:rgba(18,20,28,.85); backdrop-filter:blur(4px); color:#fff; font-size:11.5px;
+    padding:8px 12px; border-radius:999px; text-decoration:none; border:1px solid rgba(255,255,255,.15);
+    transition:background .2s ease;
+  }
+  .siemens-visual .siemens-cert-tab:hover{background:var(--c-copper);}
+  .siemens-visual .siemens-cert-tab img{width:20px; height:20px; border-radius:4px; object-fit:cover;}
+  .siemens-body{position:relative; z-index:2; padding:40px 44px; display:flex; flex-direction:column; justify-content:center;}
+  .siemens-badge{
+    width:56px; height:56px; border-radius:14px; flex:none; margin-bottom:20px;
+    background:var(--c-copper-soft); display:flex; align-items:center; justify-content:center;
+  }
+  .siemens-badge svg{width:28px; height:28px; stroke:var(--c-copper);}
+  .siemens-copy .s-tag{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); display:block; margin-bottom:8px;}
+  .siemens-copy h3{font-family:'Space Grotesk', sans-serif; font-size:clamp(20px,2.4vw,26px); margin:0 0 10px;}
+  .siemens-copy p{color:rgba(255,255,255,.72); font-size:14.5px; line-height:1.7; margin:0 0 20px; max-width:560px;}
+  .siemens-meta{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-top:18px; border-top:1px solid rgba(255,255,255,.12);}
+  .siemens-meta .s-wordmark{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; letter-spacing:.02em; color:#fff;}
+  .siemens-meta .s-valid{font-size:11.5px; color:rgba(255,255,255,.5);}
+
   /* ---- Callout band ---- */
   .callout-band{background:var(--c-ink); color:#fff; padding:70px 0; position:relative; overflow:hidden;}
   .callout-band::before{
@@ -90,21 +139,54 @@
   .callout-band p{font-family:'Space Grotesk', sans-serif; font-size:clamp(20px,2.6vw,28px); line-height:1.5; font-weight:500; margin:0; opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease;}
   .callout-band.in-view .quote-mark, .callout-band.in-view p{opacity:1; transform:translateY(0);}
 
+  /* ---- Service range ---- */
+  .services{background:var(--c-bg); padding:90px 0;}
+  .services .section-head{max-width:640px; margin:0 0 40px;}
+  .services .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); font-weight:600;}
+  .services h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3vw,32px); margin:10px 0 10px; color:var(--c-text);}
+  .services .section-head p{color:var(--c-muted); font-size:14.5px; margin:0; line-height:1.65;}
+  .service-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;}
+  .service-item{
+    display:flex; align-items:flex-start; gap:12px; padding:16px 18px;
+    background:var(--c-paper); border:1px solid var(--c-line); border-radius:12px;
+    font-size:13.5px; color:var(--c-text); line-height:1.5;
+    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease, border-color .2s ease;
+  }
+  .service-item.in-view{opacity:1; transform:translateY(0);}
+  .service-item:hover{border-color:var(--c-copper);}
+  .service-item .s-ico{width:26px; height:26px; border-radius:7px; background:var(--c-copper-soft); display:flex; align-items:center; justify-content:center; flex:none; margin-top:1px;}
+  .service-item .s-ico svg{width:13px; height:13px; stroke:var(--c-copper);}
+
   /* ---- Duo gallery ---- */
-  .duo-gallery{background:var(--c-bg); padding:0 0 90px;}
+  .duo-gallery{background:var(--c-bg); padding:20px 0 90px;}
   .duo-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .duo-item{border-radius:16px; overflow:hidden; box-shadow:0 20px 46px -26px rgba(18,20,28,.25); opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;}
   .duo-item.in-view{opacity:1; transform:translateY(0);}
   .duo-item img{display:block; width:100%; height:320px; object-fit:cover; transition:transform .5s ease;}
   .duo-item:hover img{transform:scale(1.05);}
 
+  /* ---- Trusted clients ---- */
+  .trusted{background:var(--c-paper); padding:70px 0 90px; border-top:1px solid var(--c-line);}
+  .trusted .section-head{text-align:center; max-width:600px; margin:0 auto 34px;}
+  .trusted .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); font-weight:600;}
+  .trusted h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(22px,2.6vw,28px); margin:10px 0 0; color:var(--c-text);}
+  .trusted-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-width:900px; margin:0 auto;}
+  .trusted-badge{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--c-muted);
+    background:var(--c-bg); border:1px solid var(--c-line); padding:10px 16px; border-radius:999px;
+    opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease, border-color .2s ease, color .2s ease;
+  }
+  .trusted-badge.in-view{opacity:1; transform:translateY(0);}
+  .trusted-badge:hover{border-color:var(--c-copper); color:var(--c-copper);}
+  .trusted-note{text-align:center; font-size:12.5px; color:var(--c-muted); margin-top:22px;}
+
   /* ---- Mission / Vision ---- */
-  .mv{background:var(--c-paper); padding:90px 0;}
+  .mv{background:var(--c-bg); padding:90px 0;}
   .mv .section-head{text-align:center; max-width:600px; margin:0 auto 50px;}
   .mv .section-head .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--c-copper); font-weight:600;}
   .mv .section-head h2{font-family:'Space Grotesk', sans-serif; font-size:clamp(26px,3vw,34px); margin:10px 0 0; color:var(--c-text);}
   .mv-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
-  .mv-card{position:relative; background:var(--c-bg); border:1px solid var(--c-line); border-radius:16px; padding:34px 30px; opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease;}
+  .mv-card{position:relative; background:var(--c-paper); border:1px solid var(--c-line); border-radius:16px; padding:34px 30px; opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease;}
   .mv-card.in-view{opacity:1; transform:translateY(0);}
   .mv-card:hover{box-shadow:0 20px 40px -24px rgba(18,20,28,.3);}
   .mv-icon{width:48px; height:48px; border-radius:12px; background:var(--c-copper-soft); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
@@ -116,14 +198,18 @@
     .page-hero{padding:130px 0 80px;}
     .story-grid{grid-template-columns:1fr; gap:36px;}
     .stat-strip{grid-template-columns:1fr 1fr;}
-    .duo-grid, .mv-grid{grid-template-columns:1fr;}
+    .duo-grid, .mv-grid, .service-grid{grid-template-columns:1fr;}
     .subnav .wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+    .siemens-card{grid-template-columns:1fr; text-align:left;}
+    .siemens-visual{min-height:200px;}
+    .siemens-body{padding:28px 26px;}
   }
 
   @media (prefers-reduced-motion: reduce){
     .page-hero svg.trace-line path, .page-hero svg.trace-line circle,
     .crumb, .page-hero h1, .page-hero .lead,
-    .story-media, .duo-item, .mv-card, .callout-band .quote-mark, .callout-band p{
+    .story-media, .duo-item, .mv-card, .callout-band .quote-mark, .callout-band p,
+    .siemens-card, .service-item, .trusted-badge{
       animation:none !important; opacity:1 !important; transform:none !important;
     }
   }
@@ -166,7 +252,7 @@
   <div class="wrap">
     <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span class="here">About Us</span></div>
     <h1>Powering India, <em>panel by panel.</em></h1>
-    <p class="lead">From a single manufacturing shed to a 30,000 sq. ft. facility in Gurugram — built to design, fabricate, wire and test every panel in-house.</p>
+    <p class="lead">From a single manufacturing shed to a 30,000 sq. ft. facility in Gurugram — ISO-certified, Siemens-partnered, and built to design, fabricate, wire and test every panel in-house.</p>
   </div>
 </header>
 
@@ -177,6 +263,20 @@
     <a href="management.html">Management</a>
   </div>
 </nav>
+
+<!-- ============ CERTIFICATION STRIP ============ -->
+<section class="cert-strip">
+  <div class="wrap">
+    <span class="cert-label">Certified &amp; Accredited</span>
+    <div class="cert-chips">
+      <span class="cert-chip"><img src="images/c2.png" alt="ISO 9001:2015 certified" />ISO 9001:2015</span>
+      <span class="cert-chip"><img src="images/c1.png" alt="ISO 14001 certified" />ISO 14001 Certified</span>
+      <span class="cert-chip"><img src="images/c4.png" alt="OHSAS 18001 certified" />OHSAS 18001 Certified</span>
+      <span class="cert-chip"><img src="images/c5.png" alt="MSME registered" />MSME Registered</span>
+      <span class="cert-chip"><svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px;stroke:var(--c-copper)"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Siemens SIEPAN Elite Partner</span>
+    </div>
+  </div>
+</section>
 
 <!-- ============ STORY ============ -->
 <section class="story">
@@ -189,7 +289,7 @@
         <span class="eyebrow">Who We Are</span>
         <h2>Custom-built switchboards and control panels, engineered end to end.</h2>
         <p>Established in 2017, Suraj Electricals is a complete electrical manufacturing company focused on custom-built LT/HT switchboards, bus ducts, Power and Motor Control Centres, PLC and drive panels, and related products.</p>
-        <p>Our manufacturing and painting units operate from a modern production facility at Plot no. 4, Kherki Daula Village Rd, Kherki Daula, Sector 76, Gurugram, Haryana 122012 — built across over 30,000 sq. ft. to house every stage of fabrication and painting in-house.</p>
+        <p>Our manufacturing and painting units operate from a modern production facility in Sector 76, Gurugram, Haryana — built across over 30,000 sq. ft. and equipped with German-make CNC shearing &amp; bending, CNC turret punching, a 9-tank chemical pre-treatment line and automatic powder-coating conveyor, so every stage of fabrication and finishing happens in-house.</p>
         <p>A skilled team of engineers, supervisors and support staff — backed by an in-house Design Office — lets us meet the specific requirements of different consultants with ease.</p>
 
         <div class="stat-strip">
@@ -211,11 +311,63 @@
   </div>
 </section>
 
+<!-- ============ SIEMENS SPOTLIGHT ============ -->
+<section class="siemens-section">
+  <div class="wrap">
+    <div class="siemens-card">
+      <div class="siemens-visual">
+        <img src="images/siepan-elite-panel.jpg" alt="Suraj Electricals SIEPAN Elite low voltage switchboard" />
+        <a class="siemens-cert-tab" href="images/siemens-siepan-certificate.jpg" target="_blank" rel="noopener">
+          <img src="images/siemens-siepan-certificate.jpg" alt="" />
+          View Certificate
+        </a>
+      </div>
+      <div class="siemens-body">
+        <div class="siemens-badge">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7l-9-5Z" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="siemens-copy">
+          <span class="s-tag">Technology Partnership</span>
+          <h3>Siemens SIEPAN Elite Licensed Partner</h3>
+          <p>Siemens Limited has certified Suraj Electricals as a SIEPAN Elite Licensed Partner — authorized to manufacture and sell the SIEPAN Elite Low Voltage Switchboard, type-tested and verified in accordance with IEC 61439-1 &amp; 2:2020.</p>
+        </div>
+        <div class="siemens-meta">
+          <div class="s-wordmark">SIEMENS</div>
+          <div class="s-valid">Licensed through 30 Sep 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CALLOUT ============ -->
 <section class="callout-band">
   <div class="wrap">
     <div class="quote-mark">&ldquo;</div>
     <p>Delivering exceptional products, maintaining top-notch quality, and providing reliable after-sales service — earning a vast and contented customer base across diverse industries.</p>
+  </div>
+</section>
+
+<!-- ============ SERVICE RANGE ============ -->
+<section class="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Beyond Panels</span>
+      <h2>A full turnkey electrical &amp; EPC partner</h2>
+      <p>Alongside panel manufacturing, our service range covers solar, substations, and complete electrical installation &amp; maintenance work.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SITC of Solar Projects — On-Grid &amp; Off-Grid, MW scale, Pan-India</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>33KV/11KV Electrical Substations — supply, installation, testing &amp; commissioning</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DG Set installation, commissioning &amp; servicing</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>LT/HT transmission &amp; distribution systems</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Street &amp; external lighting, incl. solar street lights</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>HVAC, fire fighting, sprinkler &amp; water/sewerage treatment installation</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fire alarm, CCTV, access control &amp; EPABX systems</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lightning protection &amp; earthing systems</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vacuum Circuit Breaker servicing &amp; AMCs for O&amp;M</div>
+      <div class="service-item"><span class="s-ico"><svg viewBox="0 0 24 24" fill="none"><path d="m4 12 6 6L20 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Govt. liaisoning for load sanction, transformers, lift &amp; DG NOCs</div>
+    </div>
   </div>
 </section>
 
@@ -226,6 +378,33 @@
       <div class="duo-item reveal"><img src="images/SE-PPT.png" alt="Suraj Electricals capability overview" /></div>
       <div class="duo-item reveal"><img src="images/IMG_4658.jpg" alt="Suraj Electricals facility" /></div>
     </div>
+  </div>
+</section>
+
+<!-- ============ TRUSTED CLIENTS ============ -->
+<section class="trusted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Roster</span>
+      <h2>Trusted by teams across industries</h2>
+    </div>
+    <div class="trusted-grid">
+      <span class="trusted-badge">Blue Star Limited</span>
+      <span class="trusted-badge">Adani Logistics</span>
+      <span class="trusted-badge">Maruti Suzuki India</span>
+      <span class="trusted-badge">Tata Steel</span>
+      <span class="trusted-badge">Mahindra &amp; Co.</span>
+      <span class="trusted-badge">PepsiCo</span>
+      <span class="trusted-badge">Indian Oil</span>
+      <span class="trusted-badge">DHBVN</span>
+      <span class="trusted-badge">M3M India</span>
+      <span class="trusted-badge">YKK</span>
+      <span class="trusted-badge">AB Mauri</span>
+      <span class="trusted-badge">PeopleStrong</span>
+      <span class="trusted-badge">GLS Infraprojects</span>
+      <span class="trusted-badge">PWD Buildings &amp; Roads, Haryana</span>
+    </div>
+    <p class="trusted-note">A selection from our client roster — spanning government, industrial and commercial clients nationwide.</p>
   </div>
 </section>
 
@@ -292,7 +471,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Suraj Electricals — All Rights Reserved</span>
-      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rajput</a></span>
+      <span>Designed &amp; built by <a href="https://github.com/rinkirajput" target="_blank" rel="noopener">Rinki Rana</a></span>
     </div>
   </div>
   <button id="backToTop" class="back-to-top" aria-label="Back to top">
@@ -304,15 +483,15 @@
 <script src="js/modern.js"></script>
 <script>
   (function(){
-    var targets = document.querySelectorAll('.story-media, .duo-item, .mv-card, .callout-band');
+    var targets = document.querySelectorAll('.story-media, .duo-item, .mv-card, .callout-band, .siemens-card, .service-item, .trusted-badge');
     if('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
           if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
         });
-      }, {threshold:.15});
+      }, {threshold:.12});
       targets.forEach(function(t, i){
-        if(!t.classList.contains('callout-band')) t.style.transitionDelay = (i % 3 * 0.1) + 's';
+        if(!t.classList.contains('callout-band') && !t.classList.contains('siemens-card')) t.style.transitionDelay = (i % 6 * 0.06) + 's';
         io.observe(t);
       });
     } else {
